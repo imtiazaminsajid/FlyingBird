@@ -22,15 +22,21 @@ public class GameView extends View {
     private int birdSpeed;
 
     //Blue ball
-
     private int blueX;
     private int blueY;
     private int blueSpeed = 15;
     private Paint bluePaint = new Paint();
 
+    //Black Ball
+    private int blackX;
+    private int blackY;
+    private int blackSpeed = 20;
+    private Paint blackPaint = new Paint();
+
     private Bitmap background;
 
     private Paint scorePaint = new Paint();
+    private int score;
 
     private Paint levelPaint =  new Paint();
 
@@ -49,6 +55,9 @@ public class GameView extends View {
         bluePaint.setColor(Color.BLUE);
         bluePaint.setAntiAlias(false);
 
+        blackPaint.setColor(Color.BLACK);
+        blackPaint.setAntiAlias(false);
+
         scorePaint.setColor(Color.BLACK);
         scorePaint.setTextSize(32);
         scorePaint.setTypeface(Typeface.DEFAULT_BOLD);
@@ -64,6 +73,8 @@ public class GameView extends View {
         life[1] = BitmapFactory.decodeResource(getResources(), R.drawable.heart);
 
         birdY = 500;
+
+        score = 0;
 
     }
 
@@ -96,23 +107,55 @@ public class GameView extends View {
         //Blue Ball
 
         blueX -=blueSpeed;
-        if (blueX<0){
-            blueX = canvasWidth + 20;
-            blueY = (int)  Math.floor(Math.random()*(maxBirdY - minBirdY)) +minBirdY;
+
+        if (hitCheck(blueX, blueY)){
+
+            score +=10;
+            blueX = -100;
+
         }
 
-        canvas.drawCircle(blueX, blueY, 10, bluePaint);
+        if (blueX<0){
+            blueX = canvasWidth + 20;
+            blueY = (int)  Math.floor(Math.random() * (maxBirdY - minBirdY)) + minBirdY;
+        }
+
+        canvas.drawCircle(blueX, blueY, 12, bluePaint);
+
+
+        //Black Ball
+
+        blackX -= blackSpeed;
+        if (hitCheck(blackX, blackY)){
+            blackX = -100;
+        }
+        if (blackX < 0){
+            blackX = canvasWidth + 200;
+            blackY = (int)  Math.floor(Math.random() * (maxBirdY - minBirdY)) + minBirdY;
+        }
+        canvas.drawCircle(blackX, blackY, 20, blackPaint);
 
 
 
 
-        canvas.drawText("Score : 0",20, 60, scorePaint);
+        canvas.drawText("Score : " + score,20, 60, scorePaint);
 
         canvas.drawText("Lv.1", canvasWidth / 2, 60, levelPaint);
 
         canvas.drawBitmap(life[0],560,30,null);
         canvas.drawBitmap(life[0],620,30,null);
         canvas.drawBitmap(life[1],680,30,null);
+    }
+
+    public boolean hitCheck(int x, int y){
+
+        if (birdX < x && x < (birdX + bird[0].getWidth()) &&
+                birdY < y && y < (birdY + bird[0].getHeight())) {
+            return true;
+        }
+
+        return false;
+
     }
 
     @Override
