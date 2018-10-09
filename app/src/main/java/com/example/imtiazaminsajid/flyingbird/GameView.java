@@ -21,6 +21,13 @@ public class GameView extends View {
     private int birdY;
     private int birdSpeed;
 
+    //Blue ball
+
+    private int blueX;
+    private int blueY;
+    private int blueSpeed = 15;
+    private Paint bluePaint = new Paint();
+
     private Bitmap background;
 
     private Paint scorePaint = new Paint();
@@ -39,6 +46,9 @@ public class GameView extends View {
 
         background = BitmapFactory.decodeResource(getResources(), R.drawable.background);
 
+        bluePaint.setColor(Color.BLUE);
+        bluePaint.setAntiAlias(false);
+
         scorePaint.setColor(Color.BLACK);
         scorePaint.setTextSize(32);
         scorePaint.setTypeface(Typeface.DEFAULT_BOLD);
@@ -52,6 +62,8 @@ public class GameView extends View {
 
         life[0] = BitmapFactory.decodeResource(getResources(), R.drawable.heart2);
         life[1] = BitmapFactory.decodeResource(getResources(), R.drawable.heart);
+
+        birdY = 500;
 
     }
 
@@ -79,6 +91,20 @@ public class GameView extends View {
             else {
             canvas.drawBitmap(bird[0], birdX, birdY, null);
         }
+
+
+        //Blue Ball
+
+        blueX -=blueSpeed;
+        if (blueX<0){
+            blueX = canvasWidth + 20;
+            blueY = (int)  Math.floor(Math.random()*(maxBirdY - minBirdY)) +minBirdY;
+        }
+
+        canvas.drawCircle(blueX, blueY, 10, bluePaint);
+
+
+
 
         canvas.drawText("Score : 0",20, 60, scorePaint);
 
