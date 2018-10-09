@@ -39,10 +39,24 @@ public class GameView extends View {
         levelPaint.setTextAlign(Paint.Align.CENTER);
         levelPaint.setAntiAlias(true);
 
+        life[0] = BitmapFactory.decodeResource(getResources(), R.drawable.heart2);
+        life[1] = BitmapFactory.decodeResource(getResources(), R.drawable.heart);
+
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
+
+        canvas.drawBitmap(background, 0,0,null);
+
         canvas.drawBitmap(bird, 0,0,null);
+
+        canvas.drawText("Score : 0",20, 60, scorePaint);
+
+        canvas.drawText("Lv.1", canvas.getWidth() / 2, 60, levelPaint);
+
+        canvas.drawBitmap(life[0],560,30,null);
+        canvas.drawBitmap(life[0],620,30,null);
+        canvas.drawBitmap(life[1],680,30,null);
     }
 }
