@@ -158,7 +158,7 @@ public class GameView extends View {
         canvas.drawText("Score : " + score,20, 60, scorePaint);
 
         //Level
-        canvas.drawText("Lv.1", canvasWidth / 2, 60, levelPaint);
+        //canvas.drawText("Lv.1", canvasWidth / 2, 60, levelPaint);
 
         //Life
         for (int i = 0; i<3; i++){
