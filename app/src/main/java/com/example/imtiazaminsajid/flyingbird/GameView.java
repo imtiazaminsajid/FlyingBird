@@ -1,6 +1,7 @@
 package com.example.imtiazaminsajid.flyingbird;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -10,6 +11,7 @@ import android.graphics.Typeface;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 public class GameView extends View {
 
@@ -136,7 +138,12 @@ public class GameView extends View {
             life_count --;
             if (life_count == 0){
                 //Game Over
-                Log.v("Message", "GAME OVER");
+                Toast.makeText(getContext(), "Game Over", Toast.LENGTH_SHORT).show();
+
+                Intent intent =  new Intent(getContext(), GameOver.class);
+                intent.putExtra("Score", score);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                getContext().startActivity(intent);
             }
         }
         if (blackX < 0){

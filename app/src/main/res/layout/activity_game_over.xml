@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background"
+    tools:context=".GameOver">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Game Over"
+        android:textColor="#ff0101"
+        android:textSize="70dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:id="@+id/scoreTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Score: 500"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:textColor="#1f7806"
+
+        />
+
+    <Button
+        android:id="@+id/playAgainBT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Play Again"
+        android:background="#9cd46e"
+        android:textStyle="bold"
+        android:textColor="#2e6fd1"
+        android:textSize="30dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:padding="10dp"
+        />
+
+</LinearLayout>
