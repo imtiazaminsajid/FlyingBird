@@ -18,6 +18,9 @@ import android.widget.Toast;
 
 public class GameView extends View {
 
+    private MediaPlayer mediaPlayer;
+    private boolean isPlaying = false;
+
     private int canvasWidth;
     private int canvasHeight;
 
@@ -87,6 +90,7 @@ public class GameView extends View {
 
         life_count = 3;
 
+
     }
 
     @Override
@@ -140,21 +144,24 @@ public class GameView extends View {
         if (hitCheck(blackX, blackY)){
             blackX = -100;
             life_count --;
+
+
             if (life_count == 0){
                 //Game Over
-                Toast.makeText(getContext(), "Game Over", Toast.LENGTH_SHORT).show();
 
                 Intent intent =  new Intent(getContext(), GameOver.class);
                 intent.putExtra("Score", score);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 getContext().startActivity(intent);
             }
+
         }
         if (blackX < 0){
             blackX = canvasWidth + 200;
             blackY = (int)  Math.floor(Math.random() * (maxBirdY - minBirdY)) + minBirdY;
         }
         canvas.drawCircle(blackX, blackY, 20, blackPaint);
+
 
 
 
@@ -198,5 +205,22 @@ public class GameView extends View {
         }
         return true;
     }
+
+    //media
+
+    public void media(){
+        if (!isPlaying){
+            mediaPlayer = MediaPlayer.create(getContext(), R.raw.backgroundaudio);
+            mediaPlayer.setLooping(true);
+            mediaPlayer.start();
+            isPlaying = true;
+        } else {
+            mediaPlayer.stop();
+            mediaPlayer.reset();
+            isPlaying=false;
+        }
+
+    }
+
 
 }

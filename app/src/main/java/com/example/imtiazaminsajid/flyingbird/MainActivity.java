@@ -25,20 +25,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_main);
 
+//        if (!isPlaying){
+//            mediaPlayer = MediaPlayer.create(this, R.raw.backgroundaudio);
+//            mediaPlayer.setLooping(true);
+//            mediaPlayer.start();
+//            isPlaying = true;
+//        } else {
+//            mediaPlayer.stop();
+//            mediaPlayer.reset();
+//            isPlaying=false;
+//        }
+
         gameView =  new GameView(this);
         setContentView(gameView);
 
 
-        if (!isPlaying){
-            mediaPlayer = MediaPlayer.create(this, R.raw.backgroundaudio);
-            mediaPlayer.setLooping(true);
-            mediaPlayer.start();
-            isPlaying = true;
-        } else {
-            mediaPlayer.stop();
-            mediaPlayer.reset();
-            isPlaying=false;
-        }
+
 
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
+
                         gameView.invalidate();
                     }
                 });
