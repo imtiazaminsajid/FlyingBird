@@ -8,9 +8,12 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class GameView extends View {
@@ -56,6 +59,7 @@ public class GameView extends View {
         bird[1] = BitmapFactory.decodeResource(getResources(), R.drawable.bird1);
 
         background = BitmapFactory.decodeResource(getResources(), R.drawable.background);
+
 
         bluePaint.setColor(Color.BLUE);
         bluePaint.setAntiAlias(false);
@@ -194,4 +198,5 @@ public class GameView extends View {
         }
         return true;
     }
+
 }

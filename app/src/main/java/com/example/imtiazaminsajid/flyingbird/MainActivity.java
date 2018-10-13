@@ -1,5 +1,6 @@
 package com.example.imtiazaminsajid.flyingbird;
 
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +11,10 @@ import java.util.TimerTask;
 public class MainActivity extends AppCompatActivity {
 
     private GameView gameView;
+
+    private MediaPlayer mediaPlayer;
+
+    private boolean isPlaying = false;
 
     private Handler handler = new Handler();
 
@@ -22,6 +27,18 @@ public class MainActivity extends AppCompatActivity {
 
         gameView =  new GameView(this);
         setContentView(gameView);
+
+
+        if (!isPlaying){
+            mediaPlayer = MediaPlayer.create(this, R.raw.backgroundaudio);
+            mediaPlayer.setLooping(true);
+            mediaPlayer.start();
+            isPlaying = true;
+        } else {
+            mediaPlayer.stop();
+            mediaPlayer.reset();
+            isPlaying=false;
+        }
 
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
