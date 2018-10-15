@@ -90,6 +90,17 @@ public class GameView extends View {
 
         life_count = 3;
 
+        if (!isPlaying){
+
+            mediaPlayer = MediaPlayer.create(getContext(), R.raw.backgroundaudio);
+            mediaPlayer.setLooping(true);
+            mediaPlayer.start();
+            isPlaying = true;
+
+        }
+
+
+
 
     }
 
@@ -147,6 +158,11 @@ public class GameView extends View {
 
 
             if (life_count == 0){
+
+                mediaPlayer.stop();
+                mediaPlayer.reset();
+                isPlaying=false;
+
                 //Game Over
 
                 Intent intent =  new Intent(getContext(), GameOver.class);
@@ -209,18 +225,22 @@ public class GameView extends View {
     //media
 
     public void media(){
-        if (!isPlaying){
-            mediaPlayer = MediaPlayer.create(getContext(), R.raw.backgroundaudio);
-            mediaPlayer.setLooping(true);
-            mediaPlayer.start();
-            isPlaying = true;
-        } else {
-            mediaPlayer.stop();
-            mediaPlayer.reset();
-            isPlaying=false;
-        }
+
+        mediaPlayer.stop();
+//        if (!isPlaying){
+//            mediaPlayer = MediaPlayer.create(getContext(), R.raw.backgroundaudio);
+//            mediaPlayer.setLooping(true);
+//            mediaPlayer.start();
+//            isPlaying = true;
+//        } else {
+//            mediaPlayer.stop();
+//            mediaPlayer.reset();
+//            isPlaying=false;
+//        }
 
     }
+
+
 
 
 }

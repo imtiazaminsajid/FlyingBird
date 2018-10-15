@@ -57,4 +57,11 @@ public class MainActivity extends AppCompatActivity {
             }
         }, 0, TIMER_INTERVEL);
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        gameView.media();
+    }
 }
