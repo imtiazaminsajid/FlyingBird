@@ -226,7 +226,7 @@ public class GameView extends View {
 
     public void media(){
 
-        mediaPlayer.stop();
+        mediaPlayer.release();
 //        if (!isPlaying){
 //            mediaPlayer = MediaPlayer.create(getContext(), R.raw.backgroundaudio);
 //            mediaPlayer.setLooping(true);
